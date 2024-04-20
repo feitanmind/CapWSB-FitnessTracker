@@ -30,8 +30,7 @@ class UserController {
 
         // Demonstracja how to use @RequestBody
         System.out.println("User with e-mail: " + userDto.email() + "passed to the request");
-        userService.createUser(userMapper.toEntity(userDto));
-        return userMapper.toEntity(userDto);
+        return userService.createUser(userMapper.toEntity(userDto));
     }
 
 }

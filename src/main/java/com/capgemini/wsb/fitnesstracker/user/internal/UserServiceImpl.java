@@ -23,7 +23,7 @@ class UserServiceImpl implements UserService, UserProvider {
         if (user.getId() != null) {
             throw new IllegalArgumentException("User has already DB ID, update is not permitted!");
         }
-        return userRepository.save(user);
+        return userRepository.saveAndFlush(user);
     }
 
     @Override
