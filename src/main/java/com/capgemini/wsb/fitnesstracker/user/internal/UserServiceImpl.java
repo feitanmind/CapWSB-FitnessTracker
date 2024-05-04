@@ -2,6 +2,7 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.exception.api.NotFoundException;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
+import com.capgemini.wsb.fitnesstracker.user.api.UserDto;
 import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,14 +18,14 @@ import java.util.Optional;
 class UserServiceImpl implements UserService, UserProvider {
 
     private final UserRepository userRepository;
-
+    private final UserMapper userMapper;
     @Override
-    public User createUser(final User user) {
+    public UserDto createUser(final UserDto user) {
         log.info("Creating User {}", user);
-        if (user.getId() != null) {
+        if (user.Id() != null) {
             throw new IllegalArgumentException("User has already DB ID, update is not permitted!");
         }
-        return userRepository.saveAndFlush(user);
+        return userMapper.toDto(userRepository.saveAndFlush(userMapper.toEntity(user)));
     }
     public int deleteUser(int idUser)
     {
