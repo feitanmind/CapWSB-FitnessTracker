@@ -1,5 +1,6 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
+import com.capgemini.wsb.fitnesstracker.exception.api.NotFoundException;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
@@ -25,7 +26,16 @@ class UserServiceImpl implements UserService, UserProvider {
         }
         return userRepository.saveAndFlush(user);
     }
-
+    public int deleteUser(int idUser)
+    {
+        Long userIdLong = Long.valueOf(idUser);
+        var user = userRepository.findById(userIdLong);
+        if (user == null) {
+            throw new NotFoundException("User Not found");
+        }
+        userRepository.delete(user.get());
+        return 1;
+    }
     @Override
     public Optional<User> getUser(final Long userId) {
         return userRepository.findById(userId);
@@ -40,5 +50,7 @@ class UserServiceImpl implements UserService, UserProvider {
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
+
+
 
 }

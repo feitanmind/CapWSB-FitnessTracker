@@ -27,10 +27,13 @@ class UserController {
 
     @PostMapping
     public User addUser(@RequestBody UserDto userDto) {
-
-        // Demonstracja how to use @RequestBody
-        System.out.println("User with e-mail: " + userDto.email() + "passed to the request");
         return userService.createUser(userMapper.toEntity(userDto));
     }
 
+    @DeleteMapping
+    public  int deleteUser(@RequestBody int idUser)
+    {
+        userService.deleteUser(idUser);
+        return 1;
+    }
 }
