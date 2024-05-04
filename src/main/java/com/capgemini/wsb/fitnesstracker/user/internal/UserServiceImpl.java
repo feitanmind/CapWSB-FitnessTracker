@@ -3,8 +3,8 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 import com.capgemini.wsb.fitnesstracker.exception.api.NotFoundException;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.UserDto;
-import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
-import com.capgemini.wsb.fitnesstracker.user.api.UserService;
+import com.capgemini.wsb.fitnesstracker.user.api.IUserProvider;
+import com.capgemini.wsb.fitnesstracker.user.api.IUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,9 +15,9 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-class UserServiceImpl implements UserService, UserProvider {
+class UserServiceImpl implements IUserService, IUserProvider {
 
-    private final UserRepository userRepository;
+    private final IUserRepository userRepository;
     private final UserMapper userMapper;
     @Override
     public UserDto createUser(final UserDto user) {
@@ -48,8 +48,8 @@ class UserServiceImpl implements UserService, UserProvider {
     }
 
     @Override
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
+    public List<UserDto> findAllUsers() {
+        return userRepository.findAll().stream().map(userMapper::toDto).toList();
     }
 
 

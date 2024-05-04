@@ -3,7 +3,7 @@ package com.capgemini.wsb.fitnesstracker.user.api;
 import java.util.List;
 import java.util.Optional;
 
-public interface UserProvider {
+public interface IUserProvider {
 
     /**
      * Retrieves a user based on their ID.
@@ -28,6 +28,6 @@ public interface UserProvider {
      *
      * @return An {@link Optional} containing the all users,
      */
-    List<User> findAllUsers();
+    List<UserDto> findAllUsers();
 
 }
