@@ -28,9 +28,9 @@ class UserController {
     }
 
     @DeleteMapping
-    public  int deleteUser(@RequestBody int idUser)
+    public String deleteUser(@RequestBody Long idUser)
     {
         userService.deleteUser(idUser);
-        return 1;
+        return "Udało się usunąć użytkownika";
     }
 }
