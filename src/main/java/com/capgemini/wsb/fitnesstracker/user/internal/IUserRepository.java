@@ -21,6 +21,11 @@ interface IUserRepository extends JpaRepository<User, Long> {
                         .findFirst();
     }
 
+    /**
+     * Return list of users older than user age
+     * @param age
+     * @return
+     */
     default List<User> findAllUserOlderByAge(int age){
         int filter = Year.now().getValue()-age;
         return findAll().stream()

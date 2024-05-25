@@ -30,5 +30,10 @@ public interface IUserProvider {
      */
     List<UserDto> findAllUsers();
 
+    /**
+     * Return all users older than passed age
+     * @param age
+     * @return
+     */
     List<UserDto> findUsersByAge(int age);
 }
