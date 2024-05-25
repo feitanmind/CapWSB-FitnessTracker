@@ -12,7 +12,7 @@ public interface IUserProvider {
      * @param userId id of the user to be searched
      * @return An {@link Optional} containing the located user, or {@link Optional#empty()} if not found
      */
-    Optional<User> getUser(Long userId);
+    Optional<UserDto> getUser(Long userId);
 
     /**
      * Retrieves a user based on their email.
@@ -21,7 +21,7 @@ public interface IUserProvider {
      * @param email The email of the user to be searched
      * @return An {@link Optional} containing the located user, or {@link Optional#empty()} if not found
      */
-    Optional<User> getUserByEmail(String email);
+    Optional<UserDto> getUserByEmail(String email);
 
     /**
      * Retrieves all users.

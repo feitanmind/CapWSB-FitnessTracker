@@ -1,6 +1,6 @@
 package com.capgemini.wsb.fitnesstracker.training.api;
 
-import com.capgemini.wsb.fitnesstracker.user.api.User;
+import com.capgemini.wsb.fitnesstracker.user.internal.User;
 
 import java.util.Optional;
 

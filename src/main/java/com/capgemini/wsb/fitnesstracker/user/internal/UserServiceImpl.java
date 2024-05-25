@@ -1,13 +1,12 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
-import com.capgemini.wsb.fitnesstracker.exception.api.NotFoundException;
-import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.user.api.UserDto;
 import com.capgemini.wsb.fitnesstracker.user.api.IUserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.IUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,24 +26,27 @@ class UserServiceImpl implements IUserService, IUserProvider {
         }
         return userMapper.toDto(userRepository.saveAndFlush(userMapper.toEntity(user)));
     }
-    public int deleteUser(int idUser)
+
+    @Override
+    @Transactional
+    public void deleteUser(Long userId)
     {
-        Long userIdLong = Long.valueOf(idUser);
-        var user = userRepository.findById(userIdLong);
-        if (user == null) {
-            throw new NotFoundException("User Not found");
-        }
-        userRepository.delete(user.get());
-        return 1;
+        User user = userRepository.getReferenceById(userId);
+        userRepository.delete(user);
+
     }
     @Override
-    public Optional<User> getUser(final Long userId) {
-        return userRepository.findById(userId);
+    public Optional<UserDto> getUser(final Long userId) {
+        Optional<User> user = userRepository.findById(userId);
+        User entity = user.get();
+        return Optional.of(userMapper.toDto(entity));
     }
 
     @Override
-    public Optional<User> getUserByEmail(final String email) {
-        return userRepository.findByEmail(email);
+    public Optional<UserDto> getUserByEmail(final String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        User entity = user.get();
+        return Optional.of(userMapper.toDto(entity));
     }
 
     @Override
