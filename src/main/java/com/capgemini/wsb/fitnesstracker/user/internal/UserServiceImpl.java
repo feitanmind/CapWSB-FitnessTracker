@@ -50,11 +50,16 @@ class UserServiceImpl implements IUserService, IUserProvider {
         return Optional.of(userMapper.toSimpleDto(entity));
     }
 
+
     @Override
     public List<UserDto> findAllUsers() {
         return userRepository.findAll().stream().map(userMapper::toDto).toList();
     }
 
+    @Override
+    public List<UserDto> findUsersByAge(int age) {
+        return userRepository.findAllUserOlderByAge(age).stream().map(userMapper::toDto).toList();
+    }
 
 
 }

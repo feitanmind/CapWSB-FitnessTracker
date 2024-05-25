@@ -30,4 +30,5 @@ public interface IUserProvider {
      */
     List<UserDto> findAllUsers();
 
+    List<UserDto> findUsersByAge(int age);
 }

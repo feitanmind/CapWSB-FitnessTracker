@@ -32,6 +32,11 @@ class UserController {
         }
 
     }
+    @GetMapping("/age/{age}")
+    public List<UserDto> getUsersOlderThanAge(@PathVariable("age") int age)
+    {
+        return  userProvider.findUsersByAge(age);
+    }
 
     @PostMapping
     public UserDto addUser(@RequestBody UserDto userDto) {
