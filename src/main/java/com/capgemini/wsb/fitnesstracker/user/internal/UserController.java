@@ -1,9 +1,6 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
-import com.capgemini.wsb.fitnesstracker.user.api.IUserProvider;
-import com.capgemini.wsb.fitnesstracker.user.api.UserDto;
-import com.capgemini.wsb.fitnesstracker.user.api.IUserService;
-import com.capgemini.wsb.fitnesstracker.user.api.UserNotFoundException;
+import com.capgemini.wsb.fitnesstracker.user.api.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +36,17 @@ class UserController {
     @PostMapping
     public UserDto addUser(@RequestBody UserDto userDto) {
         return userService.createUser(userDto);
+    }
+    @GetMapping("/email/{email}")
+    public UserSimpleDto getUserByEmail(@PathVariable("email") String email)
+    {
+        try{
+            return userProvider.getUserByEmail(email).get();
+        }
+        catch(NoSuchElementException ex)
+        {
+            throw  new UserNotFoundException("Nie ma użytkownika z takim adresem email");
+        }
     }
 
     @DeleteMapping("{id}")

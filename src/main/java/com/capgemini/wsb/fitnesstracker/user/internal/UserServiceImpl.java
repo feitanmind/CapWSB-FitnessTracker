@@ -3,6 +3,7 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 import com.capgemini.wsb.fitnesstracker.user.api.UserDto;
 import com.capgemini.wsb.fitnesstracker.user.api.IUserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.IUserService;
+import com.capgemini.wsb.fitnesstracker.user.api.UserSimpleDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -43,10 +44,10 @@ class UserServiceImpl implements IUserService, IUserProvider {
     }
 
     @Override
-    public Optional<UserDto> getUserByEmail(final String email) {
+    public Optional<UserSimpleDto> getUserByEmail(final String email) {
         Optional<User> user = userRepository.findByEmail(email);
         User entity = user.get();
-        return Optional.of(userMapper.toDto(entity));
+        return Optional.of(userMapper.toSimpleDto(entity));
     }
 
     @Override

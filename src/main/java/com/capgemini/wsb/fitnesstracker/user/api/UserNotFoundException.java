@@ -9,7 +9,7 @@ import com.capgemini.wsb.fitnesstracker.user.internal.User;
 @SuppressWarnings("squid:S110")
 public class UserNotFoundException extends NotFoundException {
 
-    private UserNotFoundException(String message) {
+    public UserNotFoundException(String message) {
         super(message);
     }
 
