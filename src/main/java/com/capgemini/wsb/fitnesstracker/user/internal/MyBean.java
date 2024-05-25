@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile("BeanCycle")
-public class MyBean {
+class MyBean {
 
     public MyBean () {
         System.out.println("Instantiation");

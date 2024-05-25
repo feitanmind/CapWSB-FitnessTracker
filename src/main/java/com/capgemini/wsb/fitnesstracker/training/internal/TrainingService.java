@@ -6,7 +6,7 @@ import com.capgemini.wsb.fitnesstracker.user.internal.User;
 import java.util.Optional;
 
 // TODO: Provide Impl
-public class TrainingServiceImpl implements TrainingProvider {
+public class TrainingService implements TrainingProvider {
 
     @Override
     public Optional<User> getTraining(final Long trainingId) {
