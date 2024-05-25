@@ -31,8 +31,8 @@ Stworzone API powinno pozwalać na:
 - [X] wyszukiwanie użytkowników po e-mailu, bez rozróżniania wielkości liter, wyszukujące po fragmencie nazwy (zwracane
   tylko
   ID oraz e-mail użytkowników)
-- [ ] wyszukiwanie użytkowników po wieku starszym niż zdefiniowany
-- [] aktualizowanie użytkowników w systemie (dowolnie wybrany atrybut)
+- [X] wyszukiwanie użytkowników po wieku starszym niż zdefiniowany
+- [ ] aktualizowanie użytkowników w systemie (dowolnie wybrany atrybut)
 
 ### Wymagania techniczne
 

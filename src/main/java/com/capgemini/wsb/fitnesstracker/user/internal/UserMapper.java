@@ -22,6 +22,15 @@ class UserMapper {
                         userDto.birthdate(),
                         userDto.email());
     }
+    User toEntityUpdate(UserDto userDto, User entity){
+        return new User(
+                userDto.Id(),
+                userDto.firstName() == null ? entity.getFirstName() : userDto.firstName(),
+                userDto.lastName() == null ? entity.getLastName() : userDto.lastName(),
+                userDto.birthdate() == null ? entity.getBirthdate() : userDto.birthdate(),
+                userDto.email() == null ? entity.getEmail() : userDto.email());
+
+    }
     UserSimpleDto toSimpleDto(User user){
         return  new UserSimpleDto(user.getId(), user.getEmail());
     }

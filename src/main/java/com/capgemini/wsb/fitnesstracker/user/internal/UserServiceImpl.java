@@ -1,9 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
-import com.capgemini.wsb.fitnesstracker.user.api.UserDto;
-import com.capgemini.wsb.fitnesstracker.user.api.IUserProvider;
-import com.capgemini.wsb.fitnesstracker.user.api.IUserService;
-import com.capgemini.wsb.fitnesstracker.user.api.UserSimpleDto;
+import com.capgemini.wsb.fitnesstracker.exception.api.NotFoundException;
+import com.capgemini.wsb.fitnesstracker.user.api.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -36,6 +34,16 @@ class UserServiceImpl implements IUserService, IUserProvider {
         userRepository.delete(user);
 
     }
+
+    @Override
+    public UserDto updateUser(UserDto userDto) {
+        if(userDto.Id() == null) throw new UserNotFoundException("Id is required");
+        User entityBase = userRepository.getReferenceById(userDto.Id());
+        User entity = userMapper.toEntityUpdate(userDto, entityBase);
+        userRepository.saveAndFlush(entity);
+        return userMapper.toDto(entity);
+    }
+
     @Override
     public Optional<UserDto> getUser(final Long userId) {
         Optional<User> user = userRepository.findById(userId);

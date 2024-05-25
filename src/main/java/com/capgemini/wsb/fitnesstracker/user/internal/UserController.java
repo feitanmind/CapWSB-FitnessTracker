@@ -1,5 +1,6 @@
 package com.capgemini.wsb.fitnesstracker.user.internal;
 
+import com.capgemini.wsb.fitnesstracker.exception.api.NotFoundException;
 import com.capgemini.wsb.fitnesstracker.user.api.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +43,12 @@ class UserController {
     public UserDto addUser(@RequestBody UserDto userDto) {
         return userService.createUser(userDto);
     }
+    @PatchMapping
+    public UserDto updateUser(@RequestBody UserDto dto)
+    {
+        return userService.updateUser(dto);
+    }
+
     @GetMapping("/email/{email}")
     public UserSimpleDto getUserByEmail(@PathVariable("email") String email)
     {
