@@ -52,11 +52,11 @@ class UserService implements IUserService, IUserProvider {
     }
 
     @Override
-    public Optional<UserSimpleDto> getUserByEmail(final String email) {
+    public Optional<UserBasicDto> getUserByEmail(final String email) {
         Optional<User> user = userRepository.findByEmail(email);
         if(user.isEmpty()) throw new UserNotFoundException("Can't find user");
         User entity = user.get();
-        return Optional.of(userMapper.toSimpleDto(entity));
+        return Optional.of(userMapper.toBasicDto(entity));
     }
 
 

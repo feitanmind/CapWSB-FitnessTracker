@@ -2,11 +2,14 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.exception.api.NotFoundException;
 import com.capgemini.wsb.fitnesstracker.user.api.*;
+import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/users")
@@ -49,15 +52,22 @@ class UserController {
         return userService.updateUser(dto);
     }
 
-    @GetMapping("/email/{email}")
-    public UserSimpleDto getUserByEmail(@PathVariable("email") String email)
+    @GetMapping("/email")
+    public UserBasicDto getUserByEmail(@PathParam("email") String email)
     {
         try{
-            return userProvider.getUserByEmail(email).get();
+            Optional<UserBasicDto> userDto = userProvider.getUserByEmail(email);
+
+            if(userDto.isEmpty())
+                throw new UserNotFoundException("Nie znaleziono");
+            else
+                return userDto.get();
+
+
         }
         catch(NoSuchElementException ex)
         {
-            throw  new UserNotFoundException("Nie ma użytkownika z takim adresem email");
+            throw new UserNotFoundException(ex.getMessage());
         }
     }
 
