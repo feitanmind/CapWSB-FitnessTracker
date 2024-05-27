@@ -46,6 +46,7 @@ class UserService implements IUserService, IUserProvider {
     @Override
     public Optional<UserDto> getUser(final Long userId) {
         Optional<User> user = userRepository.findById(userId);
+        if(user.isEmpty()) throw new UserNotFoundException("Can't find user");
         User entity = user.get();
         return Optional.of(userMapper.toDto(entity));
     }
@@ -53,6 +54,7 @@ class UserService implements IUserService, IUserProvider {
     @Override
     public Optional<UserSimpleDto> getUserByEmail(final String email) {
         Optional<User> user = userRepository.findByEmail(email);
+        if(user.isEmpty()) throw new UserNotFoundException("Can't find user");
         User entity = user.get();
         return Optional.of(userMapper.toSimpleDto(entity));
     }

@@ -2,7 +2,7 @@ package com.capgemini.wsb.fitnesstracker.loader;
 
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.internal.ActivityType;
-import com.capgemini.wsb.fitnesstracker.user.internal.User;
+import com.capgemini.wsb.fitnesstracker.user.api.User;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

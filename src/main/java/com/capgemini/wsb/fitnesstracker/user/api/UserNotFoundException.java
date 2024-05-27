@@ -1,7 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.user.api;
 
 import com.capgemini.wsb.fitnesstracker.exception.api.NotFoundException;
-import com.capgemini.wsb.fitnesstracker.user.internal.User;
+import com.capgemini.wsb.fitnesstracker.user.api.User;
 
 /**
  * Exception indicating that the {@link User} was not found.

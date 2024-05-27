@@ -1,4 +1,4 @@
-package com.capgemini.wsb.fitnesstracker.user.internal;
+package com.capgemini.wsb.fitnesstracker.user.api;
 
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import jakarta.annotation.Nullable;
@@ -16,7 +16,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
-class User {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

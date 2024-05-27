@@ -1,6 +1,6 @@
 package com.capgemini.wsb.fitnesstracker.statistics.api;
 
-import com.capgemini.wsb.fitnesstracker.user.internal.User;
+import com.capgemini.wsb.fitnesstracker.user.api.User;
 import jakarta.persistence.*;
 import lombok.*;
 

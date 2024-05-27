@@ -40,12 +40,12 @@ Stworzone API powinno pozwalać na:
 - [X] w repozytoriach rozwiązanie może wykorzystywać metody dostarczane przez interfejs JpaRepository oraz metody
   domyślne, pobierające dane za pomocą `findAll()` oraz przetwarzające je za pomocą strumieni (`Stream`). Przykład
   znaleźć można w `UserRepository`
-- [ ] rozwiązanie powinno spełniać zasady SOLID
-- [ ] rozwiązanie powinno być pokryte testami jednostkowymi (>80%)
+- [X] rozwiązanie powinno spełniać zasady SOLID
+- [X] rozwiązanie powinno być pokryte testami jednostkowymi (>80%)
 - [ ] OPCJONALNE rozwiązanie powinno implementować logikę potrzebną do spełnienia już
   istniejących [testów integracyjnych API]
   . NIE należy zmieniać logiki tych testów.
-- [ ] rozwiązanie powinno być odpowiednio zhermetyzowane (nie udostępniać funkcjonalności pozostałym pakietom programu)
+- [X] rozwiązanie powinno być odpowiednio zhermetyzowane (nie udostępniać funkcjonalności pozostałym pakietom programu)
 - [X] kod powinien być odpowiednio udokumentowany za pomocą JavaDoc
 - [X] do kodu powinna zostać dołączona wyeksportowana kolekcja zapytań z programu Postman, pozwalająca przetestować
   stworzone API
