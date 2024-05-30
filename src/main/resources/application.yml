@@ -1,5 +1,11 @@
 spring:
   profiles:
+    active: test
+
+---
+
+spring:
+  profiles:
     active: loadInitialData
   datasource:
     url: "jdbc:h2:mem:testdb"
@@ -9,7 +15,3 @@ spring:
   h2:
     console:
       enabled: true
----
-spring:
-  profiles:
-    active: test
