@@ -3,11 +3,8 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 import com.capgemini.wsb.fitnesstracker.user.api.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,14 +17,13 @@ import java.util.Optional;
 class UserService implements IUserService, IUserProvider {
 
     private final IUserRepository userRepository;
-    private final UserMapper userMapper;
     @Override
     public UserDto createUser(final UserDto user) {
         log.info("Creating User {}", user);
         if (user.Id() != null) {
             throw new IllegalArgumentException("User has already DB ID, update is not permitted!");
         }
-        return userMapper.toDto(userRepository.saveAndFlush(userMapper.toEntity(user)));
+        return UserMapper.toDto(userRepository.saveAndFlush(UserMapper.toEntity(user)));
     }
 
     @Override
@@ -42,9 +38,9 @@ class UserService implements IUserService, IUserProvider {
     public UserDto updateUser(UserDto userDto) {
         if(userDto.Id() == null) throw new UserNotFoundException("Id is required");
         User entityBase = userRepository.getReferenceById(userDto.Id());
-        User entity = userMapper.toEntityUpdate(userDto, entityBase);
+        User entity = UserMapper.toEntityUpdate(userDto, entityBase);
         userRepository.saveAndFlush(entity);
-        return userMapper.toDto(entity);
+        return UserMapper.toDto(entity);
     }
 
     @Override
@@ -52,7 +48,7 @@ class UserService implements IUserService, IUserProvider {
         Optional<User> user = userRepository.findById(userId);
         if(user.isEmpty()) throw new UserNotFoundException("Can't find user");
         User entity = user.get();
-        return Optional.of(userMapper.toDto(entity));
+        return Optional.of(UserMapper.toDto(entity));
     }
 
     @Override
@@ -60,34 +56,34 @@ class UserService implements IUserService, IUserProvider {
         Optional<User> user = userRepository.findByEmail(email);
         if(user.isEmpty()) throw new UserNotFoundException("Can't find user");
         User entity = user.get();
-        return Optional.of(userMapper.toBasicDto(entity));
+        return Optional.of(UserMapper.toBasicDto(entity));
     }
 
     @Override
     public List<UserBasicDto> findAllUsersWithEmail(String email) {
-        return userRepository.findAllUsersWithMail(email).stream().map(userMapper::toBasicDto).toList();
+        return userRepository.findAllUsersWithMail(email).stream().map(UserMapper::toBasicDto).toList();
     }
 
 
     @Override
     public List<UserDto> findAllUsers() {
-        return userRepository.findAll().stream().map(userMapper::toDto).toList();
+        return userRepository.findAll().stream().map(UserMapper::toDto).toList();
     }
 
 
     @Override
     public List<UserDto> findUsersByAge(int age) {
-        return userRepository.findAllUserOlderByAge(age).stream().map(userMapper::toDto).toList();
+        return userRepository.findAllUserOlderByAge(age).stream().map(UserMapper::toDto).toList();
     }
 
     @Override
     public List<UserSimpleDto> getAllSimpleUsers() {
-        return userRepository.findAll().stream().map(userMapper::toSimpleDto).toList();
+        return userRepository.findAll().stream().map(UserMapper::toSimpleDto).toList();
     }
 
     @Override
     public List<UserDto> findAllUsersOlderThanDate(LocalDate time) {
-        return userRepository.findAllUsersOlderThanDate(time).stream().map(userMapper::toDto).toList();
+        return userRepository.findAllUsersOlderThanDate(time).stream().map(UserMapper::toDto).toList();
     }
 
 

@@ -1,7 +1,6 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
 
-import com.capgemini.wsb.fitnesstracker.training.api.ITrainingProvider;
-import com.capgemini.wsb.fitnesstracker.training.api.ITrainingService;
+import com.capgemini.wsb.fitnesstracker.training.api.*;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,8 +15,9 @@ import java.util.Optional;
 @Slf4j
 public class TrainingService implements ITrainingProvider, ITrainingService {
 
+    private final ITrainingRepository trainingRepository;
     @Override
-    public Optional<User> getTraining(Long trainingId) {
-        return Optional.empty();
+    public TrainingDto getTraining(Long trainingId) {
+        return TrainingMapper.toDto(trainingRepository.getReferenceById(trainingId));
     }
 }
