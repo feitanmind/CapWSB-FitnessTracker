@@ -9,6 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @ToString
 public class Statistics {
 
@@ -29,4 +30,11 @@ public class Statistics {
     @Column(name = "total_calories_burned")
     private int totalCaloriesBurned;
 
+    public Statistics(User user, int totalTrainings, double totalDistance, int totalCaloriesBurned)
+    {
+        this.user = user;
+        this.totalTrainings = totalTrainings;
+        this.totalDistance = totalDistance;
+        this.totalCaloriesBurned = totalCaloriesBurned;
+    }
 }
