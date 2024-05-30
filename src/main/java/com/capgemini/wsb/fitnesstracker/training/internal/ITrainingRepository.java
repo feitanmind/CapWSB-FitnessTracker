@@ -38,6 +38,16 @@ interface ITrainingRepository extends JpaRepository<Training, Long> {
     }
 
     /**
+     * Return list of trainings with end date after specified date for all users
+     * @param date
+     * @return List(Training)
+     */
+    default List<Training> findTrainingsWithEndDateAfterSpecifiedEndDate(Date date)
+    {
+        return findAll().stream().filter(t -> t.getEndTime().after(date)).toList();
+    }
+
+    /**
      * Return list of trainings for user with specified activityTYpe
      * @param activityType
      * @param userId

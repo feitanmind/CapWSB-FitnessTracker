@@ -44,6 +44,13 @@ public interface ITrainingProvider {
     List<TrainingDto> getListOfTrainingForAllUsersWithEndDateBeforeDate(Date date);
 
     /**
+     * Return List of Training FOR ALL USERS with End Date after specified date
+     * @param date
+     * @return List(TrainingDto)
+     */
+    List<TrainingDto> getListOfTrainingForAllUsersWithEndDateAfterDate(Date date);
+
+    /**
      * Return List of Training FOR USER with specified Activity
      * @param activityType
      * @param userId

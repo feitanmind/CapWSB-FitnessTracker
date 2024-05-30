@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @IntegrationTest
 @Transactional
+@ActiveProfiles("test")
 @AutoConfigureMockMvc(addFilters = false)
 class TrainingApiIntegrationTest extends IntegrationTestBase {
 
@@ -42,7 +44,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                 .andDo(log())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0].user.id").value(user1.getId()))
+                .andExpect(jsonPath("$[0].user.Id").value(user1.getId()))
                 .andExpect(jsonPath("$[0].user.firstName").value(user1.getFirstName()))
                 .andExpect(jsonPath("$[0].user.lastName").value(user1.getLastName()))
                 .andExpect(jsonPath("$[0].user.email").value(user1.getEmail()))
@@ -67,7 +69,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                 .andDo(log())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0].user.id").value(user1.getId()))
+                .andExpect(jsonPath("$[0].user.Id").value(user1.getId()))
                 .andExpect(jsonPath("$[0].user.firstName").value(user1.getFirstName()))
                 .andExpect(jsonPath("$[0].user.lastName").value(user1.getLastName()))
                 .andExpect(jsonPath("$[0].user.email").value(user1.getEmail()))
@@ -92,7 +94,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                 .andDo(log())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0].user.id").value(user1.getId()))
+                .andExpect(jsonPath("$[0].user.Id").value(user1.getId()))
                 .andExpect(jsonPath("$[0].user.firstName").value(user1.getFirstName()))
                 .andExpect(jsonPath("$[0].user.lastName").value(user1.getLastName()))
                 .andExpect(jsonPath("$[0].user.email").value(user1.getEmail()))
@@ -115,12 +117,12 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                 .andDo(log())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0].user.id").value(user1.getId()))
+                .andExpect(jsonPath("$[0].user.Id").value(user1.getId()))
                 .andExpect(jsonPath("$[0].user.firstName").value(user1.getFirstName()))
                 .andExpect(jsonPath("$[0].user.lastName").value(user1.getLastName()))
                 .andExpect(jsonPath("$[0].user.email").value(user1.getEmail()))
                 .andExpect(jsonPath("$[0].activityType").value(training2.getActivityType().toString()))
-                .andExpect(jsonPath("$[1].user.id").value(user1.getId()))
+                .andExpect(jsonPath("$[1].user.Id").value(user1.getId()))
                 .andExpect(jsonPath("$[1].user.firstName").value(user1.getFirstName()))
                 .andExpect(jsonPath("$[1].user.lastName").value(user1.getLastName()))
                 .andExpect(jsonPath("$[1].user.email").value(user1.getEmail()))
@@ -147,7 +149,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
         mockMvc.perform(post("/v1/trainings").contentType(MediaType.APPLICATION_JSON).content(requestBody))
                 .andDo(log())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.user.id").value(user1.getId()))
+                .andExpect(jsonPath("$.user.Id").value(user1.getId()))
                 .andExpect(jsonPath("$.user.firstName").value(user1.getFirstName()))
                 .andExpect(jsonPath("$.user.lastName").value(user1.getLastName()))
                 .andExpect(jsonPath("$.user.email").value(user1.getEmail()))
@@ -175,7 +177,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
         mockMvc.perform(put("/v1/trainings/{trainingId}", training1.getId()).contentType(MediaType.APPLICATION_JSON).content(requestBody))
                 .andDo(log())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.user.id").value(user1.getId()))
+                .andExpect(jsonPath("$.user.Id").value(user1.getId()))
                 .andExpect(jsonPath("$.user.firstName").value(user1.getFirstName()))
                 .andExpect(jsonPath("$.user.lastName").value(user1.getLastName()))
                 .andExpect(jsonPath("$.user.email").value(user1.getEmail()))

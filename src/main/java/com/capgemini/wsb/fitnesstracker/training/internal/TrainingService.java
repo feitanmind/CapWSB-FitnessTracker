@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -47,6 +46,11 @@ public class TrainingService implements ITrainingProvider, ITrainingService {
     }
 
     @Override
+    public List<TrainingDto> getListOfTrainingForAllUsersWithEndDateAfterDate(Date date) {
+        return trainingRepository.findTrainingsWithEndDateAfterSpecifiedEndDate(date).stream().map(TrainingMapper::toDto).toList();
+    }
+
+    @Override
     public List<TrainingDto> getListOfTrainingForUserWithSpecifiedActivity(ActivityType activityType, Long userId) {
         return trainingRepository.findAllTrainingForSpecifiedActivity(activityType,userId).stream().map(TrainingMapper::toDto).toList();
     }
@@ -57,8 +61,8 @@ public class TrainingService implements ITrainingProvider, ITrainingService {
     }
 
     @Override
-    public TrainingDto createTraining(TrainingDto training) {
-        User user = userProvider.getUserEntity(training.getUser().Id());
+    public TrainingDto createTraining(TrainingSimpleDto training) {
+        User user = userProvider.getUserEntity(training.getUserId());
         Training tr = TrainingMapper.toEntity(training,user);
         trainingRepository.saveAndFlush(tr);
         return TrainingMapper.toDto(tr);
@@ -70,5 +74,13 @@ public class TrainingService implements ITrainingProvider, ITrainingService {
         Training tr = TrainingMapper.toUpdateEntity(trainingDto,user);
         trainingRepository.saveAndFlush(tr);
         return TrainingMapper.toDto(tr);
+    }
+
+    @Override
+    public TrainingDto updateTraining(Long trainingId, TrainingSimpleDto dto) {
+        User user = trainingRepository.getReferenceById(trainingId).getUser();
+        Training tr = TrainingMapper.toUpdateEntity(dto,user,trainingId);
+        trainingRepository.saveAndFlush(tr);
+        return  TrainingMapper.toDto(tr);
     }
 }

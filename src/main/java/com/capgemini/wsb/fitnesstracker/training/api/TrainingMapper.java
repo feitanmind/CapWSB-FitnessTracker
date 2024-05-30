@@ -19,4 +19,12 @@ public class TrainingMapper {
     {
         return new Training(dto.getId(),user,dto.getStartTime(),dto.getEndTime(),dto.getActivityType(),dto.getDistance(), dto.getAverageSpeed());
     }
+    public static Training toEntity(TrainingSimpleDto dto, User user)
+    {
+        return new Training(user,dto.getStartTime(),dto.getEndTime(),dto.getActivityType(),dto.getDistance(),dto.getAverageSpeed());
+    }
+    public static Training toUpdateEntity(TrainingSimpleDto dto, User user, Long id)
+    {
+        return new Training(id,user,dto.getStartTime(),dto.getEndTime(),dto.getActivityType(),dto.getDistance(),dto.getAverageSpeed());
+    }
 }
