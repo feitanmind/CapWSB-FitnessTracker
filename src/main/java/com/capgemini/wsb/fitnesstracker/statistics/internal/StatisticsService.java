@@ -28,6 +28,11 @@ class StatisticsService implements IStatisticsProvider, IStatisticsService {
     }
 
     @Override
+    public List<StatisticsBasicDto> getAllBasicStatistics() {
+        return  statisticsRepository.findAll().stream().map(StatisticsMapper::toSimpleDto).toList();
+    }
+
+    @Override
     public List<StatisticsDto> getListOfAllStatistics() {
         return statisticsRepository.findAll().stream().map(StatisticsMapper::toDto).toList();
     }

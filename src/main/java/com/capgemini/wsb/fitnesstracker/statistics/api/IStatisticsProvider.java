@@ -13,6 +13,7 @@ public interface IStatisticsProvider {
      * @return An {@link Optional} containing the located Statistics, or {@link Optional#empty()} if not found
      */
     StatisticsDto getStatistics(Long statisticsId);
+    List<StatisticsBasicDto> getAllBasicStatistics();
 
     List<StatisticsDto> getListOfAllStatistics();
 
