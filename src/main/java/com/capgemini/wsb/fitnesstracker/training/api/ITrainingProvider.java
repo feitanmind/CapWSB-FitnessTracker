@@ -4,7 +4,7 @@ import com.capgemini.wsb.fitnesstracker.user.api.User;
 
 import java.util.Optional;
 
-public interface TrainingProvider {
+public interface ITrainingProvider {
 
     /**
      * Retrieves a training based on their ID.
