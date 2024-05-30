@@ -42,4 +42,12 @@ interface IUserRepository extends JpaRepository<User, Long> {
                 .toList();
     }
 
+    //tylko z powodu testów integracyjnych
+    default List<User> findAllUsersOlderThanDate(LocalDate time)
+    {
+        return findAll().stream()
+                .filter(user -> user.getBirthdate().isBefore(time))
+                .toList();
+    }
+
 }

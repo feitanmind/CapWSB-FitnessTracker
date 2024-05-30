@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -44,6 +45,11 @@ class UserController {
     public List<UserDto> getUsersOlderThanAge(@PathVariable("age") int age)
     {
         return  userProvider.findUsersByAge(age);
+    }
+    @GetMapping("/older/{time}")
+    public List<UserDto> getUsersOlderThanDate(@PathVariable("time") LocalDate time)
+    {
+        return  userProvider.findAllUsersOlderThanDate(time);
     }
 
     @PostMapping

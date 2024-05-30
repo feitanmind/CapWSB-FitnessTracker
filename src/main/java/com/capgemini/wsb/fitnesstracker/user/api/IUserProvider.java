@@ -1,5 +1,6 @@
 package com.capgemini.wsb.fitnesstracker.user.api;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,4 +51,10 @@ public interface IUserProvider {
      * @return List
      */
     List<UserSimpleDto> getAllSimpleUsers();
+
+    /**
+     * Returns List of User Dto of users older han date
+     * @return List(UserDto)
+     */
+    List<UserDto> findAllUsersOlderThanDate(LocalDate time);
 }
