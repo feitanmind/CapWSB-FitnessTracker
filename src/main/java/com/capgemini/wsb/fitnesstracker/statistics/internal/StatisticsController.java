@@ -23,7 +23,11 @@ class StatisticsController {
     {
         return statisticsProvider.getAllBasicStatistics();
     }
-
+    @GetMapping("/user/{id}")
+    public StatisticsDto getStatisticsForUser(@PathVariable("id") Long userId)
+    {
+        return statisticsProvider.getStatisticForUser(userId);
+    }
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public StatisticsDto addStatistics(@RequestBody StatisticsDto dto)

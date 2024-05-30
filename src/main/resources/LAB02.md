@@ -48,15 +48,15 @@ Stworzone API powinno pozwalać na:
 
 Stworzone API powinno pozwalać na:
 
-- [ ] wylistowanie podstawowych informacji o wszystkich statystykach zapisanych w systemie
-- [ ] utworzenie nowych statystyk
-- [ ] aktualizacja Statystyk Użytkownika implementacja funkcjonalności do aktualizacji istniejących statystyk dla
+- [X] wylistowanie podstawowych informacji o wszystkich statystykach zapisanych w systemie
+- [X] utworzenie nowych statystyk
+- [X] aktualizacja Statystyk Użytkownika implementacja funkcjonalności do aktualizacji istniejących statystyk dla
   użytkownika.
-- [ ] pobranie szczegółów dotyczących statystyk dla danego użytkownika
-- [ ] usunięcie statystyk
-- [ ] wyszukiwanie użytkowników po e-mailu, bez rozróżniania wielkości liter, wyszukujące po fragmencie nazwy (zwracane
+- [X] pobranie szczegółów dotyczących statystyk dla danego użytkownika
+- [X] usunięcie statystyk
+- [X] wyszukiwanie użytkowników po e-mailu, bez rozróżniania wielkości liter, wyszukujące po fragmencie nazwy (zwracane
   tylko ID oraz e-mail użytkowników)
-- [ ] wyszukiwanie użytkowników po wieku starszym niż zdefiniowany
+- [X] wyszukiwanie użytkowników po wieku starszym niż zdefiniowany
 
 ### Wymagania techniczne
 
