@@ -42,7 +42,7 @@ Stworzone API powinno pozwalać na:
   znaleźć można w `UserRepository`
 - [X] rozwiązanie powinno spełniać zasady SOLID
 - [X] rozwiązanie powinno być pokryte testami jednostkowymi (>80%)
-- [ ] OPCJONALNE rozwiązanie powinno implementować logikę potrzebną do spełnienia już
+- [X] OPCJONALNE rozwiązanie powinno implementować logikę potrzebną do spełnienia już
   istniejących [testów integracyjnych API]
   . NIE należy zmieniać logiki tych testów.
 - [X] rozwiązanie powinno być odpowiednio zhermetyzowane (nie udostępniać funkcjonalności pozostałym pakietom programu)

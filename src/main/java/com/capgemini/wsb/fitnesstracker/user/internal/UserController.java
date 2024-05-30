@@ -5,6 +5,7 @@ import com.capgemini.wsb.fitnesstracker.user.api.*;
 import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -53,6 +54,7 @@ class UserController {
     }
 
     @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
     public UserDto addUser(@RequestBody UserDto userDto) {
         return userService.createUser(userDto);
     }
@@ -60,6 +62,13 @@ class UserController {
     public UserDto updateUser(@RequestBody UserDto dto)
     {
         return userService.updateUser(dto);
+    }
+    //Zrobione specjalnie pod testy integracyjne
+    @PutMapping("{id}")
+    public UserDto updateUser(@RequestBody UserDto dto, @PathVariable("id") Long id)
+    {
+        UserDto dtoUpdate = new UserDto(id, dto.firstName(), dto.lastName(),dto.birthdate(), dto.email());
+        return userService.updateUser(dtoUpdate);
     }
 
     @GetMapping("/email")
@@ -87,6 +96,7 @@ class UserController {
     }
 
     @DeleteMapping("{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public String deleteUser(@PathVariable("id") Long idUser)
     {
         userService.deleteUser(idUser);
