@@ -1,9 +1,6 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
 
-import com.capgemini.wsb.fitnesstracker.training.api.ITrainingProvider;
-import com.capgemini.wsb.fitnesstracker.training.api.ITrainingService;
-import com.capgemini.wsb.fitnesstracker.training.api.TrainingSimpleDto;
-import com.capgemini.wsb.fitnesstracker.training.api.TrainingDto;
+import com.capgemini.wsb.fitnesstracker.training.api.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -17,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/trainings")
 @RequiredArgsConstructor
-public class TrainingController {
+class TrainingController {
 
     private final ITrainingProvider trainingProvider;
     private final ITrainingService trainingService;

@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
-public class TrainingService implements ITrainingProvider, ITrainingService {
+class TrainingService implements ITrainingProvider, ITrainingService {
 
     private final ITrainingRepository trainingRepository;
     private final IUserProvider userProvider;
