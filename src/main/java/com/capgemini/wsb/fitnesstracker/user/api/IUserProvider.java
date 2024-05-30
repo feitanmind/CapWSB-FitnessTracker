@@ -57,4 +57,11 @@ public interface IUserProvider {
      * @return List(UserDto)
      */
     List<UserDto> findAllUsersOlderThanDate(LocalDate time);
+
+    /**
+     * Return user entity
+     * @param idUser
+     * @return User
+     */
+    User getUserEntity(Long idUser);
 }

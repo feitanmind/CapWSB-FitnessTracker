@@ -86,5 +86,10 @@ class UserService implements IUserService, IUserProvider {
         return userRepository.findAllUsersOlderThanDate(time).stream().map(UserMapper::toDto).toList();
     }
 
+    @Override
+    public User getUserEntity(Long idUser) {
+        return userRepository.getReferenceById(idUser);
+    }
+
 
 }

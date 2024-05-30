@@ -41,7 +41,7 @@ interface ITrainingRepository extends JpaRepository<Training, Long> {
      * Return list of trainings for user with specified activityTYpe
      * @param activityType
      * @param userId
-     * @return
+     * @return List(Training)
      */
     default List<Training> findAllTrainingForSpecifiedActivity(ActivityType activityType, Long userId)
     {
@@ -51,7 +51,7 @@ interface ITrainingRepository extends JpaRepository<Training, Long> {
     /**
      * Return list of trainings for all users with specified activityTYpe
      * @param activityType
-     * @return
+     * @return List(Training)
      */
     default List<Training> findAllTrainingForSpecifiedActivity(ActivityType activityType)
     {
