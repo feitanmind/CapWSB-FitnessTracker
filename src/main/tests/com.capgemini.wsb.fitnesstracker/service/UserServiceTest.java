@@ -87,7 +87,7 @@ public class UserServiceTest {
         //given
         UserDto dto = userService.createUser(user);
         //when
-        Optional<UserSimpleDto> dtoUser = userProvider.getUserByEmail(dto.email());
+        Optional<UserBasicDto> dtoUser = userProvider.getUserByEmail(dto.email());
         //then
         Assert.assertTrue(dtoUser.isPresent());
         Assert.assertEquals(dto.email(), dtoUser.get().email());

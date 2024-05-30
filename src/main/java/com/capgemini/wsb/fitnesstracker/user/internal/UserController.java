@@ -36,6 +36,10 @@ class UserController {
         }
 
     }
+    @GetMapping("/simple")
+    public List<UserSimpleDto> getListOfSimpleUser(){
+            return userProvider.getAllSimpleUsers();
+    }
     @GetMapping("/age/{age}")
     public List<UserDto> getUsersOlderThanAge(@PathVariable("age") int age)
     {
@@ -53,6 +57,11 @@ class UserController {
     }
 
     @GetMapping("/email")
+    public List<UserBasicDto> getListOfUsersByEmail(@PathParam("email") String email)
+    {
+       return userProvider.findAllUsersWithEmail(email);
+    }
+    @GetMapping("/single/email")
     public UserBasicDto getUserByEmail(@PathParam("email") String email)
     {
         try{

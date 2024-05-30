@@ -23,6 +23,14 @@ public interface IUserProvider {
      */
     Optional<UserBasicDto> getUserByEmail(String email);
 
+    //Z powodu testów (bo nie powinno być wielu użytkowników z takim samym emailem
+    /**
+     * Find all users with specified email
+     * @param email
+     * @return List
+     */
+    List<UserBasicDto> findAllUsersWithEmail(String email);
+
     /**
      * Retrieves all users.
      *
@@ -33,7 +41,13 @@ public interface IUserProvider {
     /**
      * Return all users older than passed age
      * @param age
-     * @return
+     * @return List
      */
     List<UserDto> findUsersByAge(int age);
+
+    /**
+     * Return all simple users
+     * @return List
+     */
+    List<UserSimpleDto> getAllSimpleUsers();
 }

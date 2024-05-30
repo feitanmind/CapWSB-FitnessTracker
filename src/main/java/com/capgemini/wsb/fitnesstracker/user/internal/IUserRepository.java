@@ -34,4 +34,12 @@ interface IUserRepository extends JpaRepository<User, Long> {
                 .toList();
     }
 
+    //Tylko z powodu testów integracyjnych\
+    default  List<User> findAllUsersWithMail(String email)
+    {
+        return findAll().stream()
+                .filter(user -> Objects.equals(user.getEmail().toLowerCase(), email.toLowerCase()))
+                .toList();
+    }
+
 }

@@ -59,15 +59,26 @@ class UserService implements IUserService, IUserProvider {
         return Optional.of(userMapper.toBasicDto(entity));
     }
 
+    @Override
+    public List<UserBasicDto> findAllUsersWithEmail(String email) {
+        return userRepository.findAllUsersWithMail(email).stream().map(userMapper::toBasicDto).toList();
+    }
+
 
     @Override
     public List<UserDto> findAllUsers() {
         return userRepository.findAll().stream().map(userMapper::toDto).toList();
     }
 
+
     @Override
     public List<UserDto> findUsersByAge(int age) {
         return userRepository.findAllUserOlderByAge(age).stream().map(userMapper::toDto).toList();
+    }
+
+    @Override
+    public List<UserSimpleDto> getAllSimpleUsers() {
+        return userRepository.findAll().stream().map(userMapper::toSimpleDto).toList();
     }
 
 
