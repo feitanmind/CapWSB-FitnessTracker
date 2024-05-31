@@ -1,4 +1,4 @@
-package com.capgemini.wsb.fitnesstracker.service;
+package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.*;
 import org.junit.Assert;
@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.Year;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

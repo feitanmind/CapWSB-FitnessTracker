@@ -21,7 +21,8 @@ class UserService implements IUserService, IUserProvider {
     public UserDto createUser(final UserDto user) {
         log.info("Creating User {}", user);
         if (user.Id() != null) {
-            throw new IllegalArgumentException("User has already DB ID, update is not permitted!");
+           UserDto updatedUser = new UserDto(null, user.firstName(),user.firstName(),user.birthdate(),user.email());
+            return UserMapper.toDto(userRepository.saveAndFlush(UserMapper.toEntity(updatedUser)));
         }
         return UserMapper.toDto(userRepository.saveAndFlush(UserMapper.toEntity(user)));
     }
