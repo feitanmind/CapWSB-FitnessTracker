@@ -84,8 +84,8 @@ Jako pracownik utrzymania, chcę mieć możliwość kontroli wykonania się kodu
 
 ### Wymagania funkcjonalne
 
-- [ ] być uruchomiony podczas wywoływania metod publicznych serwisów (klas adnotowanych `@Service`)
-- [ ] przed wywołaniem metody logować o niej informację w
+- [X] być uruchomiony podczas wywoływania metod publicznych serwisów (klas adnotowanych `@Service`)
+- [X] przed wywołaniem metody logować o niej informację w
   formacie (`typ zwracany nazwaKlasy.nazwaMetody(typParametru1 nazwaParametru1, ...)`),
   np. `void MyService.myMethod(String param1, Boolean param2)`
 - [ ] po wywołaniu metody logować informację o metodzie (w tym samym formacie co przed wywołaniem) wraz z informacją na
@@ -93,9 +93,9 @@ Jako pracownik utrzymania, chcę mieć możliwość kontroli wykonania się kodu
 
 ### Wymagania techniczne
 
-- [ ] aspekt powinien zostać zaimplementowany z użyciem biblioteki AspectJ
-- [ ] rozwiązanie powinno spełniać zasady SOLID
-- [ ] testy jednostkowe rozwiązania nie są wymagane
-- [ ] testy integracyjne rozwiązania nie są wymagane
-- [ ] rozwiązanie powinno być odpowiednio zhermetyzowane (nie udostępniać funkcjonalności pozostałym pakietom programu)
-- [ ] kod powinien być odpowiednio udokumentowany za pomocą JavaDoc
+- [X] aspekt powinien zostać zaimplementowany z użyciem biblioteki AspectJ
+- [X] rozwiązanie powinno spełniać zasady SOLID
+- [X] testy jednostkowe rozwiązania nie są wymagane
+- [X] testy integracyjne rozwiązania nie są wymagane
+- [X] rozwiązanie powinno być odpowiednio zhermetyzowane (nie udostępniać funkcjonalności pozostałym pakietom programu)
+- [X] kod powinien być odpowiednio udokumentowany za pomocą JavaDoc

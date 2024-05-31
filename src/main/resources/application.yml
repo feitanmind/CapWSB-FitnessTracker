@@ -1,10 +1,13 @@
 spring:
+  main:
+    allow-circular-references: true
   profiles:
     active: test
-
 ---
 
 spring:
+  main:
+    allow-circular-references: true
   profiles:
     active: loadInitialData
   datasource:
