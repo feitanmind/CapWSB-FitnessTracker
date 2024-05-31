@@ -2,9 +2,7 @@ package com.capgemini.wsb.fitnesstracker.aspect;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +20,17 @@ class GeneralServiceAspect {
 
     @Before("serviceMethods()")
         public void beforeServiceCall(JoinPoint joinPoint) {
+        String log = formatString(joinPoint);
+        System.out.println("Before: " + log);
+    }
+    @AfterReturning(value = "execution(* com.capgemini.wsb.fitnesstracker.*.internal.*Service.*(..))",returning = "obj")
+    public void afterServiceCall(JoinPoint joinPoint, Object obj)
+    {
+        String log = formatString(joinPoint);
+        System.out.println("After: " + log + " Return: "+obj.toString());
+    }
+    private String formatString(JoinPoint joinPoint)
+    {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         String returnType = signature.getReturnType().getTypeName();
         returnType = returnType.lastIndexOf('.') != -1 ? returnType.substring(returnType.lastIndexOf('.')+1) : returnType;
@@ -32,7 +41,7 @@ class GeneralServiceAspect {
         List<String> argsWithTypes = new ArrayList<>();
         Arrays.stream(args).forEach(g -> argsWithTypes.add( (g.getClass().getName().lastIndexOf(".") != -1 ? g.getClass().getName().substring(g.getClass().getName().lastIndexOf(".")+1):g.getClass().getName() )+ " " + g.toString()));
         String argsString = argsWithTypes.toString().replace('[','(').replace(']',')');
-        System.out.println(returnType+ " "+serviceName+"."+ methodName + argsString);
+        return returnType+ " "+serviceName+"."+ methodName + argsString;
     }
 
 }

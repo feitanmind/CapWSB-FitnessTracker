@@ -88,7 +88,7 @@ Jako pracownik utrzymania, chcę mieć możliwość kontroli wykonania się kodu
 - [X] przed wywołaniem metody logować o niej informację w
   formacie (`typ zwracany nazwaKlasy.nazwaMetody(typParametru1 nazwaParametru1, ...)`),
   np. `void MyService.myMethod(String param1, Boolean param2)`
-- [ ] po wywołaniu metody logować informację o metodzie (w tym samym formacie co przed wywołaniem) wraz z informacją na
+- [X] po wywołaniu metody logować informację o metodzie (w tym samym formacie co przed wywołaniem) wraz z informacją na
   temat zwróconej wartości (wystarczy jej toString())
 
 ### Wymagania techniczne
