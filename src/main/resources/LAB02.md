@@ -67,12 +67,12 @@ Stworzone API powinno pozwalać na:
   znaleźć można w `UserRepository`
 - [X] rozwiązanie powinno spełniać zasady SOLID
 - [X] rozwiązanie powinno być pokryte testami jednostkowymi (>80%)
-- [ ] OPCJONALNE rozwiązanie powinno implementować logikę potrzebną do spełnienia już
+- [X] OPCJONALNE rozwiązanie powinno implementować logikę potrzebną do spełnienia już
   istniejących [testów integracyjnych API]
   . NIE należy zmieniać logiki tych testów.
 - [X] rozwiązanie powinno być odpowiednio zhermetyzowane (nie udostępniać funkcjonalności pozostałym pakietom programu)
 - [X] kod powinien być odpowiednio udokumentowany za pomocą JavaDoc
-- [ ] do kodu powinna zostać dołączona wyeksportowana kolekcja zapytań z programu Postman, pozwalająca przetestować
+- [X] do kodu powinna zostać dołączona wyeksportowana kolekcja zapytań z programu Postman, pozwalająca przetestować
   stworzone API
 - [X] rozwiązanie powinno wykorzystywać zwykłe klasy Javowe do definicji obiektów transferu danych (DTO)
 
