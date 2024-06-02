@@ -27,7 +27,8 @@ class GeneralServiceAspect {
     public void afterServiceCall(JoinPoint joinPoint, Object obj)
     {
         String log = formatString(joinPoint);
-        System.out.println("After: " + log + " Return: "+obj.toString());
+        String logRet = obj != null ?obj.toString() : "no content";
+        System.out.println("After: " + log + " Return: "+logRet);
     }
     private String formatString(JoinPoint joinPoint)
     {
