@@ -1,6 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
 
 import com.capgemini.wsb.fitnesstracker.training.api.*;
+import com.capgemini.wsb.fitnesstracker.training.events.TrainingEndEventPublisher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,10 @@ class TrainingController {
     private final ITrainingProvider trainingProvider;
     private final ITrainingService trainingService;
 
+    @GetMapping("/training/{trainingId}")
+    public TrainingDto getTrainingById(@PathVariable("trainingId") Long trainingId) {
+        return trainingProvider.getTraining(trainingId);
+    }
     @GetMapping("{userId}")
     public List<TrainingDto> getTraining(@PathVariable("userId") Long userId)
     {

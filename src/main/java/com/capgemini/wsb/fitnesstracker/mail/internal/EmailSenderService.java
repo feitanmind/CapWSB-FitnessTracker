@@ -1,6 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.mail.internal;
 
 import com.capgemini.wsb.fitnesstracker.mail.api.*;
+import com.capgemini.wsb.fitnesstracker.mail.events.MailSendEventPublisher;
 import com.capgemini.wsb.fitnesstracker.statistics.api.IStatisticsProvider;
 import com.capgemini.wsb.fitnesstracker.statistics.api.StatisticsDto;
 import com.capgemini.wsb.fitnesstracker.training.api.ITrainingProvider;
@@ -35,6 +36,8 @@ class EmailSenderService implements IEmailSenderService {
     @Autowired
     private  final ITrainingProvider trainingProvider;
 
+    private final MailSendEventPublisher publisher;
+
     @Override
     public String send(RequestEmailDto email) {
         SimpleMailMessage message = new SimpleMailMessage();
@@ -58,6 +61,7 @@ class EmailSenderService implements IEmailSenderService {
         {
             emailSender.send(message);
         }
+        publisher.sendMessageAndPublishEvent("Email sent to "+email.toAddress());
         String testAnnotation = isTest ? "[Attention! This was a test. Real mail won't send]\n":"";
         return testAnnotation+"Email sent [From: FitnessTracker, To: "+email.toAddress() +"]\n"+
                 "Subject: "+subject +"\n"+
@@ -84,5 +88,6 @@ class EmailSenderService implements IEmailSenderService {
         {
             emailSender.send(message);
         }
+        publisher.sendMessageAndPublishEvent("Email sent to "+recipients);
     }
 }

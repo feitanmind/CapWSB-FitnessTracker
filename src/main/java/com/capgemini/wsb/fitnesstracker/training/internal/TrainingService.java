@@ -1,6 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
 
 import com.capgemini.wsb.fitnesstracker.training.api.*;
+import com.capgemini.wsb.fitnesstracker.training.events.TrainingEndEventPublisher;
 import com.capgemini.wsb.fitnesstracker.user.api.IUserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import lombok.RequiredArgsConstructor;
