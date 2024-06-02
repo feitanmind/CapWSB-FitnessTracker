@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "128b0e07-fc16-477e-821e-f5f685dfe35e",
+		"name": "Spring, Lab 3 Testy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31637659"
+	},
+	"item": [
+		{
+			"name": "Wysłanie maila",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"toAddress\": \"burskiadamwork@gmail.com\",\n    \"userId\": \"1\",\n    \"isTest\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/email",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"email"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example - Wysłanie maila",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"toAddress\": \"burskiadamwork@gmail.com\",\n    \"userId\": \"1\",\n    \"isTest\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/email",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"email"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Wysyłanie powiadomienia o zakończonym treningu",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"recipients\" :[\n        \"burskiadam@engineer.com\"\n    ],\n    \"trainingId\":1,\n    \"isTest\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/email/end",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"email",
+						"end"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example - Wysyłanie powiadomienia o zakończonym treningu",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"recipients\" :[\n        \"burskiadam@engineer.com\"\n    ],\n    \"trainingId\":1,\n    \"isTest\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/v1/email/end",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"email",
+								"end"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
