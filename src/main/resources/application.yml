@@ -19,13 +19,13 @@ spring:
     console:
       enabled: true
   mail:
-    host: "smtp-mail.outlook.com"
+    host: "smtp.office365.com"
     port: 587
     username: "springspringtest@outlook.com"
     password: "syUSv9hU2QCZjqK"
     properties:
-      smtp:
-        auth: true
-        starttls:
-          enable: true
-          required: true
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
