@@ -15,8 +15,8 @@ class MailController {
     private final EmailSenderService emailSenderService;
 
     @PostMapping
-    void sendMail(@RequestBody RequestEmailDto emailDto)
+    String sendMail(@RequestBody RequestEmailDto emailDto)
     {
-        emailSenderService.send(emailDto);
+        return emailSenderService.send(emailDto);
     }
 }

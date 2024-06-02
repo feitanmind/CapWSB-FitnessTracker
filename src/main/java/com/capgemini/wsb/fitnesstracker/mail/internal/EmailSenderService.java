@@ -16,6 +16,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.security.auth.Subject;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +37,12 @@ class EmailSenderService implements IEmailSenderService {
     private  final ITrainingProvider trainingProvider;
 
     @Override
-    public void send(RequestEmailDto email) {
+    public String send(RequestEmailDto email) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("Fitness Tracker <springspringtest@outlook.com>");
         message.setTo(email.toAddress());
-        message.setSubject(email.subject() != null ? email.subject() : "Raport z traningów - na dzień "+ LocalDate.now().toString());
+        String subject = email.subject() != null ? email.subject() : "Raport z traningów - na dzień "+ LocalDate.now().toString();
+        message.setSubject(subject);
         StatisticsDto statisticsDto = statisticsProvider.getStatisticForUser(email.userId());
         List<TrainingDto> trainingsForUser = trainingProvider.getTrainingsForSpecifiedUser(email.userId());
         List<Long> time = new ArrayList<>();
@@ -52,6 +54,14 @@ class EmailSenderService implements IEmailSenderService {
 
         String content = "Time spend on training: "+hours+" hours "+minutes+" minutes"+ seconds+" second"+" Number of trainings: "+statisticsDto.getTotalTrainings();
         message.setText(content);
-        emailSender.send(message);
+        boolean isTest = email.isTest();
+        if(!isTest)
+        {
+            emailSender.send(message);
+        }
+        String testAnnotation = isTest ? "[Attention! This was a test. Real mail won't send]\n":"";
+        return testAnnotation+"Email sent [From: FitnessTracker, To: "+email.toAddress() +"]\n"+
+                "Subject: "+subject +"\n"+
+                "Content: "+content;
     }
 }

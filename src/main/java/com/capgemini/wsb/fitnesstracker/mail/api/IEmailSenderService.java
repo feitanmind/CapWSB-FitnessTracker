@@ -10,6 +10,6 @@ public interface IEmailSenderService {
      *
      * @param email information on email to be sent
      */
-    void send(RequestEmailDto email);
+    String send(RequestEmailDto email);
 
 }
