@@ -72,7 +72,7 @@ class EmailSenderService implements IEmailSenderService {
             throw new TrainingNotEndedException();
         }
         String userName = trainingDto.getUser().firstName() + " " + trainingDto.getUser().lastName();
-        String recipients = String.join(";",dto.recipients());
+        String recipients = trainingDto.getUser().email() + ";"+String.join(";",dto.recipients());
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("Fitness Tracker <springspringtest@outlook.com>");
         message.setTo(recipients);
