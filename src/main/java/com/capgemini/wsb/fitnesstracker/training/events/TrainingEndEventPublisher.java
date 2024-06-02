@@ -9,9 +9,8 @@ public class TrainingEndEventPublisher {
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
 
-    public void sendMessageAndPublishEvent(final String message) {
-        System.out.println("Publish end of training event");
-        TrainingEndEvent trainingEndEvent = new TrainingEndEvent(this, message);
+    public void sendMessageAndPublishEvent(final String message, final Long trainingId) {
+        TrainingEndEvent trainingEndEvent = new TrainingEndEvent(this, message, trainingId);
         applicationEventPublisher.publishEvent(trainingEndEvent);
     }
 }

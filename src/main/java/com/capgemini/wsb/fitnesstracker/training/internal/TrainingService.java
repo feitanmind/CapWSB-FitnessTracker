@@ -9,6 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,9 +20,10 @@ import java.util.List;
 @Transactional
 @Slf4j
 class TrainingService implements ITrainingProvider, ITrainingService {
-
+    private final List<TrainingSendDto> trainingSendDtos = new ArrayList<>();
     private final ITrainingRepository trainingRepository;
     private final IUserProvider userProvider;
+    private final TrainingEndEventPublisher trainingEndEventPublisher;
 
     @Override
     public TrainingDto getTraining(Long trainingId) {
@@ -83,5 +87,23 @@ class TrainingService implements ITrainingProvider, ITrainingService {
         Training tr = TrainingMapper.toUpdateEntity(dto,user,trainingId);
         trainingRepository.saveAndFlush(tr);
         return  TrainingMapper.toDto(tr);
+    }
+    //ta metoda fajna by była do sprawdzania czy zostały wysłane powiadomienia o zakonczonych treningach
+    private void checkAndSendUnsendEmailsAboutEndedTraining()
+    {
+        List<TrainingDto> trainingDtos = getListOfAllTrainings();
+        for (TrainingDto trainingDto : trainingDtos) {
+            boolean isSend = false;
+            for(TrainingSendDto trainingSendDto : trainingSendDtos) {
+                if(trainingDto.getId() == trainingSendDto.trainingId())
+                {
+                    isSend = true;
+                    break;
+                }
+            }
+            if(!isSend && trainingDto.getEndTime().before(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()))){
+                trainingEndEventPublisher.sendMessageAndPublishEvent("Zakończono trening o id: "+trainingDto.getId(),trainingDto.getId());
+            }
+        }
     }
 }
