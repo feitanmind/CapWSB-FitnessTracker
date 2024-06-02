@@ -97,6 +97,7 @@ class TrainingService implements ITrainingProvider, ITrainingService {
             for(TrainingSendDto trainingSendDto : trainingSendDtos) {
                 if(trainingDto.getId() == trainingSendDto.trainingId())
                 {
+                    //też spoko jakby w modelu było czy wysyłać powiadomienie do użytkownika w booleanie bo niektórzy nie chcą spamu na poczcie
                     isSend = true;
                     break;
                 }
