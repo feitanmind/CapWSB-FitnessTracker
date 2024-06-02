@@ -16,6 +16,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +38,9 @@ class EmailSenderService implements IEmailSenderService {
     @Override
     public void send(RequestEmailDto email) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("springspringtest@outlook.com");
+        message.setFrom("Fitness Tracker <springspringtest@outlook.com>");
         message.setTo(email.toAddress());
-        message.setSubject(email.subject() != null ? email.subject() : "Raport z traningów");
+        message.setSubject(email.subject() != null ? email.subject() : "Raport z traningów - na dzień "+ LocalDate.now().toString());
         StatisticsDto statisticsDto = statisticsProvider.getStatisticForUser(email.userId());
         List<TrainingDto> trainingsForUser = trainingProvider.getTrainingsForSpecifiedUser(email.userId());
         List<Long> time = new ArrayList<>();
