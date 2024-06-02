@@ -1,13 +1,11 @@
 package com.capgemini.wsb.fitnesstracker.mail.internal;
 
-import com.capgemini.wsb.fitnesstracker.mail.api.EmailDto;
-import com.capgemini.wsb.fitnesstracker.mail.api.IEmailSenderService;
-import com.capgemini.wsb.fitnesstracker.mail.api.RequestEmailDto;
+import com.capgemini.wsb.fitnesstracker.mail.api.*;
 import com.capgemini.wsb.fitnesstracker.statistics.api.IStatisticsProvider;
-import com.capgemini.wsb.fitnesstracker.statistics.api.IStatisticsService;
 import com.capgemini.wsb.fitnesstracker.statistics.api.StatisticsDto;
 import com.capgemini.wsb.fitnesstracker.training.api.ITrainingProvider;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingDto;
+import com.capgemini.wsb.fitnesstracker.training.api.TrainingNotEndedException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +14,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.security.auth.Subject;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -63,5 +62,27 @@ class EmailSenderService implements IEmailSenderService {
         return testAnnotation+"Email sent [From: FitnessTracker, To: "+email.toAddress() +"]\n"+
                 "Subject: "+subject +"\n"+
                 "Content: "+content;
+    }
+
+    @Override
+    public void sendInformationAboutEndOfTraining(RequestEmailEndTrainingDto dto) throws TrainingNotEndedException {
+        TrainingDto trainingDto = trainingProvider.getTraining(dto.trainingId());
+        if(!trainingDto.getEndTime().before(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant())))
+        {
+            throw new TrainingNotEndedException();
+        }
+        String userName = trainingDto.getUser().firstName() + " " + trainingDto.getUser().lastName();
+        String recipients = String.join(";",dto.recipients());
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("Fitness Tracker <springspringtest@outlook.com>");
+        message.setTo(recipients);
+        String subject = "Training for "+userName+" was ended";
+        message.setSubject(subject);
+        message.setText("Congratulations "+userName+ "!\n Your training was ended! We share this achievement to your friends");
+        boolean isTest = dto.isTest();
+        if(!isTest)
+        {
+            emailSender.send(message);
+        }
     }
 }
