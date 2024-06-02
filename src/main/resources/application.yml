@@ -18,3 +18,14 @@ spring:
   h2:
     console:
       enabled: true
+  mail:
+    host: "smtp-mail.outlook.com"
+    port: 587
+    username: "springspringtest@outlook.com"
+    password: "syUSv9hU2QCZjqK"
+    properties:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+          required: true
