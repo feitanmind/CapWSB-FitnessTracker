@@ -14,6 +14,11 @@ public interface IEmailSenderService {
      */
     String send(RequestEmailDto email);
 
+    /**
+     * Send information to all recipients about end of training
+     * @param dto
+     * @throws TrainingNotEndedException
+     */
     void sendInformationAboutEndOfTraining(RequestEmailEndTrainingDto dto) throws TrainingNotEndedException;
 
 }

@@ -31,8 +31,8 @@ Stworzone API powinno pozwalać na:
 - [ ] rozwiązanie powinno być pokryte za pomocą testów integracyjnych stworzonego API - powinny one sprawdzać, że
   wymagania funkcjonalne są spełnione
 - [X] rozwiązanie powinno być odpowiednio zhermetyzowane (nie udostępniać funkcjonalności pozostałym pakietom programu)
-- [ ] kod powinien być odpowiednio udokumentowany za pomocą JavaDoc
-- [ ] rozwiązanie powinno wykorzystywać mechanizm zdarzeń aplikacji (application events) do publikowania zdarzenia, że
+- [X] kod powinien być odpowiednio udokumentowany za pomocą JavaDoc
+- [X] rozwiązanie powinno wykorzystywać mechanizm zdarzeń aplikacji (application events) do publikowania zdarzenia, że
   informacja o aktywności ma zostać wysłana. Odbiorca wiadomości oraz logikę związaną z jej wysyłaniem obsłuż kodem
   wywoływanym przez pojawienie się odpowiedniego zdarzenia.
 
